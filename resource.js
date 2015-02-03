@@ -509,8 +509,10 @@ var Resource = module.exports = Class.extend({
             return;
         }
 
-        this.deserializeJson(req, res, object, status);
-
+        res.header('Cache-Control','no-cache');
+        res.header('Pragma','no-cache');
+        res.header('Expires','-1');
+        res.status(status).json(object);
     },
 
     /**
